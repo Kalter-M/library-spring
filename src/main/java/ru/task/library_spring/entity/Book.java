@@ -1,9 +1,6 @@
 package ru.task.library_spring.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Book {
@@ -11,10 +8,21 @@ public class Book {
     @Id
     //@GeneratedValue(strategy=GenerationType.AUTO)
     private String isbn;
-
     private String author;
-
     private String name;
+
+    public User getWho_take() {
+        return user_id;
+    }
+
+    public void setWho_take(User who_take) {
+        this.user_id = who_take;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user_id;
+
 
     public String getIsbn() {
         return isbn;

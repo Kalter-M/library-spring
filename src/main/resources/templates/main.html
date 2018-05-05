@@ -7,7 +7,7 @@
 <body>
 <div>Список пользователей</div>
 <ul th:each="user : ${users}">
-    <li th:text="${user}"></li>
+    <li th:text="${user.getLogin()}"></li>
 </ul>
 </body>
 </html>
