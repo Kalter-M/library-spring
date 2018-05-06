@@ -1,13 +1,73 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head th:fragment="htmlhead">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Starter Template for Bootstrap</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" href="/css/bootstrap.css" />
+
 </head>
+
 <body>
-<div>Список пользователей</div>
-<ul th:each="user : ${users}">
-    <li th:text="${user.getLogin()}"></li>
-</ul>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar w/ text</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+      Navbar text with an inline element
+    </span>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Text</td>
+                <td>Due to</td>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr th:if="${users}">-->
+                <!--<td colspan="4">No tasks</td>-->
+            <!--</tr>-->
+            <tr th:each="user : ${users}">
+                <td th:text="${user.getId()}">1</td>
+                <td th:text="${user.getLogin()}">Text ...</td>
+                <td>000</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div><!-- /.container -->
+
+
 </body>
 </html>
