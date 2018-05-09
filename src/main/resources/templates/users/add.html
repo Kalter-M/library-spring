@@ -18,7 +18,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light color" style="background-color: #e3f2fd;">
     <a class="navbar-brand">Spring library</a>
     <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">-->
-        <!--<span class="navbar-toggler-icon"></span>-->
+    <!--<span class="navbar-toggler-icon"></span>-->
     <!--</button>-->
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
@@ -38,36 +38,25 @@
 <div class="container">
 
     <div class="starter-template">
-        <h1>A list of users</h1>
+        <h1>Add user</h1>
         <!--<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>-->
-        <br>
-        <button type="button" class="btn btn-primary" onclick="location.href = '/users/add';">Add user</button>
-        <br>
-        <table class="table table-bordered table-striped">
-            <thead>
-            <tr>
-                <td>ID</td>
-                <td>Login</td>
-                <td>Password</td>
-                <td>Action</td>
-            </tr>
-            </thead>
-            <tbody>
-            <!--<tr th:if="${users}">-->
-                <!--<td colspan="4">No tasks</td>-->
-            <!--</tr>-->
-            <tr th:each="user : ${users}">
-                <td th:text="${user.getId()}"></td>
-                <td th:text="${user.getLogin()}"></td>
-                <td th:text="${user.getPassword()}"></td>
-                <td>Delete</td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="form-group row">
+            <label for="username" class="col-2 col-form-label">Username</label>
+            <div class="col-xs-3">
+                <input class="form-control" type="text" value="Artisanal kale" id="username">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-2 col-form-label">Password</label>
+            <div class="col-xs-3">
+                <input class="form-control" type="text" value="Artisanal kale" id="password">
+            </div>
+        </div>
+        <button type="button" class="btn btn-success">Добавить</button>
+        <button type="button" class="btn btn-default">Отмена</button>
     </div>
 
 </div><!-- /.container -->
-
 
 </body>
 </html>

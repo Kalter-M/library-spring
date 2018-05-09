@@ -33,11 +33,16 @@ public class GreetingController {
         return "books";
     }
 
-    @RequestMapping(path = "/users", method = RequestMethod.GET)
+    @GetMapping("/users")
     public String users(Model model) {
         Iterable<User> users = userRepo.findAll();
         model.addAttribute("users", users);
         return "users";
+    }
+
+    @GetMapping("/users/add")
+    public String addUser() {
+        return "users/add";
     }
 
 //    //redirect to users page
