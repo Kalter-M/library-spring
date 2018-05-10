@@ -3,10 +3,7 @@ package ru.task.library_spring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import ru.task.library_spring.entity.Book;
@@ -41,8 +38,17 @@ public class GreetingController {
     }
 
     @GetMapping("/users/add")
-    public String addUser() {
+    public String addUserGet() {
         return "users/add";
+    }
+
+    @PostMapping("/users/add")
+    public String addUserPost(@RequestParam String username, @RequestParam String password)
+    {
+        User user = new User(username, password);
+        userRepo.save(user);
+
+        return "users";
     }
 
 //    //redirect to users page
