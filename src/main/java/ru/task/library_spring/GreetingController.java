@@ -43,12 +43,12 @@ public class GreetingController {
     }
 
     @PostMapping("/users/add")
-    public String addUserPost(@RequestParam String username, @RequestParam String password)
+    public RedirectView addUserPost(@RequestParam String username, @RequestParam String password)
     {
         User user = new User(username, password);
         userRepo.save(user);
 
-        return "users";
+        return new RedirectView("/users");
     }
 
 //    //redirect to users page
