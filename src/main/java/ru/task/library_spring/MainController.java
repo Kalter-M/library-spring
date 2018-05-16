@@ -82,13 +82,19 @@ public class MainController {
         if (type.equals("take"))
         {
             book.setWho_take(user);
+            bookRepo.save(book);
         }
-        else
+        else if (type.equals("return"))
         {
             book.setWho_take(null);
+            bookRepo.save(book);
+        }
+        else if (type.equals("delete"))
+        {
+            bookRepo.delete(book);
         }
 
-        bookRepo.save(book);
+
         //User user = userRepo.findById(id).get();
         //userRepo.delete(user);
 

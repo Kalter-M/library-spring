@@ -53,6 +53,7 @@
                 <td>Name</td>
                 <td>Author</td>
                 <td>Who take</td>
+                <td>Action</td>
             </tr>
             </thead>
             <tbody>
@@ -91,6 +92,21 @@
                             <input type="hidden" name="isbn" th:value="${book.getIsbn()}" />
                             <input type="hidden" name="login" th:value="${#request.remoteUser}" />
                             <button type="submit" class="btn btn-secondary">Вернуть</button>
+                        </form>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <form method="POST">
+                            <input type="hidden"
+                                   th:name="${_csrf.parameterName}"
+                                   th:value="${_csrf.token}" />
+                            <input type="hidden"
+                                   th:name="type"
+                                   th:value="delete" />
+                            <input type="hidden" name="isbn" th:value="${book.getIsbn()}" />
+                            <input type="hidden" name="login" th:value="${#request.remoteUser}" />
+                            <button type="submit" class="btn btn-danger">Удалить</button>
                         </form>
                     </div>
                 </td>
