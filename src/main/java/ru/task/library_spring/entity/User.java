@@ -1,6 +1,7 @@
 package ru.task.library_spring.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -11,6 +12,9 @@ public class User {
 
     private String login;
     private String password;
+
+    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
+    private List<Book> bookList;
 
     public User() {}
 
@@ -41,5 +45,12 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @PreRemove
+    private void preRemove() {
+        for (Book s : bookList) {
+            s.setWho_take(null);
+        }
     }
 }
