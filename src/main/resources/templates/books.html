@@ -1,13 +1,84 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head th:fragment="htmlhead">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Starter Template for Bootstrap</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" href="/css/bootstrap.css" />
+
 </head>
+
 <body>
-<div>Список книг</div>
-<ul th:each="book : ${books}">
-    <li th:text="${book.getName() + ' ' + book.getAuthor()}"></li>
-</ul>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light color" style="background-color: #e3f2fd;">
+    <a class="navbar-brand">Spring library</a>
+    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">-->
+    <!--<span class="navbar-toggler-icon"></span>-->
+    <!--</button>-->
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/users">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/books">Books<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <div class="collapse navbar-text">
+            <span th:inline="text" style="margin-right: 20px">Hello, [[${#httpServletRequest.remoteUser}]]!</span>
+            <form th:action="@{/logout}" method="post" style="display: inline-block">
+                <button type="submit" class="btn btn-light btn-sm">Sign Out</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>A list of books</h1>
+        <!--<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>-->
+        <br>
+        <button type="button" class="btn btn-primary" onclick="location.href = '/users/add';">Add book</button>
+        <br>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <td>ISBN</td>
+                <td>Name</td>
+                <td>Author</td>
+                <td>Who take</td>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr th:if="${users}">-->
+            <!--<td colspan="4">No tasks</td>-->
+            <!--</tr>-->
+            <tr th:each="book : ${books}">
+                <td th:text="${book.getIsbn()}"></td>
+                <td th:text="${book.getName()}"></td>
+                <td th:text="${book.getAuthor()}"></td>
+                <td>
+                    <form method="POST">
+                        <input type="hidden"
+                               th:name="${_csrf.parameterName}"
+                               th:value="${_csrf.token}" />
+                        <!--<input type="hidden" name="id" id="id" th:value="${user.getId()}" />-->
+                        <button type="submit" class="btn btn-secondary">Взять</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div><!-- /.container -->
+
+
 </body>
 </html>
