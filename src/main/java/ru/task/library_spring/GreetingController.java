@@ -51,6 +51,20 @@ public class GreetingController {
         return new RedirectView("/users");
     }
 
+    @GetMapping("/books/add")
+    public String addBookGet() {
+        return "books/add";
+    }
+
+    @PostMapping("/books/add")
+    public RedirectView addBookPost(@RequestParam String isbn, @RequestParam String name, @RequestParam String author)
+    {
+        Book book = new Book(isbn, name, author);
+        bookRepo.save(book);
+
+        return new RedirectView("/books");
+    }
+
     @PostMapping("/users")
     public RedirectView deleteUser(@RequestParam Long id)
     {
@@ -58,6 +72,27 @@ public class GreetingController {
         userRepo.delete(user);
 
         return new RedirectView("/users");
+    }
+
+    @PostMapping("/books")
+    public RedirectView bookAction(@RequestParam String isbn, @RequestParam String type, @RequestParam String login)
+    {
+        User user = userRepo.findByLogin(login);
+        Book book = bookRepo.findByIsbn(isbn);
+        if (type.equals("take"))
+        {
+            book.setWho_take(user);
+        }
+        else
+        {
+            book.setWho_take(null);
+        }
+
+        bookRepo.save(book);
+        //User user = userRepo.findById(id).get();
+        //userRepo.delete(user);
+
+        return new RedirectView("/books");
     }
 
 //    //redirect to users page

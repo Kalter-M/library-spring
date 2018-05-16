@@ -11,6 +11,16 @@ public class Book {
     private String author;
     private String name;
 
+    public Book() {}
+
+    public Book(String isbn, String name, String author)
+    {
+        this.isbn = isbn;
+        this.name = name;
+        this.author = author;
+        this.user_id = null;
+    }
+
     public User getWho_take() {
         return user_id;
     }
