@@ -60,7 +60,12 @@
                 <td th:text="${user.getId()}"></td>
                 <td th:text="${user.getLogin()}"></td>
                 <td th:text="${user.getPassword()}"></td>
-                <td>Delete</td>
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="id" id="id" th:value="${user.getId()}" />
+                        <button type="submit" class="btn btn-success">Удалить</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
