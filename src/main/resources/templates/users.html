@@ -18,7 +18,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light color" style="background-color: #e3f2fd;">
     <a class="navbar-brand">Spring library</a>
     <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">-->
-        <!--<span class="navbar-toggler-icon"></span>-->
+    <!--<span class="navbar-toggler-icon"></span>-->
     <!--</button>-->
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
@@ -30,8 +30,10 @@
             </li>
         </ul>
         <span class="navbar-text">
-      Navbar text with an inline element
-    </span>
+        <h4 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h4>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>    </span>
     </div>
 </nav>
 
@@ -54,7 +56,7 @@
             </thead>
             <tbody>
             <!--<tr th:if="${users}">-->
-                <!--<td colspan="4">No tasks</td>-->
+            <!--<td colspan="4">No tasks</td>-->
             <!--</tr>-->
             <tr th:each="user : ${users}">
                 <td th:text="${user.getId()}"></td>
@@ -63,7 +65,7 @@
                 <td>
                     <form method="POST">
                         <input type="hidden" name="id" id="id" th:value="${user.getId()}" />
-                        <button type="submit" class="btn btn-success">Удалить</button>
+                        <button type="submit" class="btn btn-danger">Удалить</button>
                     </form>
                 </td>
             </tr>
