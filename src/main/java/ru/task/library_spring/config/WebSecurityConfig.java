@@ -3,6 +3,7 @@ package ru.task.library_spring.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -18,8 +19,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-               // .antMatchers("/").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers(
+                        "/lib/bootstrap/**",
+                        "/css/**",
+                        "/img/**",
+                        "/js/**").permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -27,8 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
-        http.formLogin().defaultSuccessUrl("/users", true);
     }
+
 
     @Bean
     @Override
