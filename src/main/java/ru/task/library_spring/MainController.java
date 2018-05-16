@@ -12,13 +12,13 @@ import ru.task.library_spring.repos.BookRepo;
 import ru.task.library_spring.repos.UserRepo;
 
 @Controller
-public class GreetingController {
+public class MainController {
 
     private final UserRepo userRepo;
     private final BookRepo bookRepo;
 
     @Autowired
-    public GreetingController(UserRepo userRepo, BookRepo bookRepo) {
+    public MainController(UserRepo userRepo, BookRepo bookRepo) {
         this.userRepo = userRepo;
         this.bookRepo = bookRepo;
     }
